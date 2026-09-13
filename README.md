@@ -4,7 +4,7 @@ Mengelompokkan 38 provinsi Indonesia berdasarkan tingkat kemiskinan dan kualitas
 hidup (IPM) menggunakan K-Means Clustering, untuk mengidentifikasi wilayah yang
 perlu diprioritaskan dalam kebijakan pengentasan kemiskinan.
 
-🔗 **[Coba Dashboard Interaktif](link-streamlit-kamu-setelah-deploy)**
+🔗 **[Coba Dashboard Interaktif](https://poverty-clustering-indonesia-nxbywkxslmuyybcpuedz5d.streamlit.app/)**
 
 ## Latar Belakang
 Kesenjangan pembangunan antarwilayah adalah tantangan besar di Indonesia.
