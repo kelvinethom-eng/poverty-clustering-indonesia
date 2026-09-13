@@ -26,7 +26,7 @@ indikator apa yang paling membedakan antar wilayah.
 
 ## Temuan Utama
 
-![Peta Klaster](/choropeth_cluster.png)
+![Peta Klaster](/chorlopeth_cluster.png)
 
 Empat klaster teridentifikasi: **Kritis**, **Perlu Prioritas**, **Berkembang**, dan
 **Sejahtera & Maju**. Klaster "Kritis" — Papua Tengah dan Papua Pegunungan — memiliki
