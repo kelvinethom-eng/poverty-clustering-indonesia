@@ -18,7 +18,7 @@ st.set_page_config(
 # ---------------------------------------------------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("poverty_ipm.csv", sep=";")
+    df = pd.read_csv("project1_merge.csv", sep=";")
     df.columns = df.columns.str.strip()
     df = df.rename(
         columns={
@@ -36,7 +36,7 @@ def load_data():
 
 @st.cache_data
 def load_geojson():
-    with open("indonesia.geojson", "r") as f:
+    with open("indonesia (1).geojson", "r") as f:
         return json.load(f)
 
 
