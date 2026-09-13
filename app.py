@@ -13,10 +13,12 @@ st.set_page_config(
     layout="wide",
 )
 
+# ---------------------------------------------------------------------------
 # Load & prepare data
+# ---------------------------------------------------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("project1_merge.csv", sep=";")
+    df = pd.read_csv("poverty_ipm.csv", sep=";")
     df.columns = df.columns.str.strip()
     df = df.rename(
         columns={
@@ -34,7 +36,7 @@ def load_data():
 
 @st.cache_data
 def load_geojson():
-    with open("indonesia (1).geojson", "r") as f:
+    with open("indonesia.geojson", "r") as f:
         return json.load(f)
 
 
@@ -86,9 +88,9 @@ label_pool = [
     "Kritis",
     "Perlu Prioritas",
     "Berkembang",
-    "Sejahtena & Maju",
+    "Cukup Sejahtera",
+    "Sejahtera",
     "Sangat Sejahtera",
-    "Istimewa",
 ]
 label_map = {c: label_pool[i] for i, c in enumerate(cluster_order)}
 df["cluster_label"] = df["cluster"].map(label_map)
@@ -144,11 +146,11 @@ fig_map = px.choropleth(
     hover_name="geo_key",
     hover_data={c: ":.2f" for c in FEATURES} | {"geo_key": False},
     category_orders={"cluster_label": label_pool},
-    color_discrete_sequence=px.colors.sequential.RdYlGn[::-1] if n_clusters <= 4 else px.colors.qualitative.Set2,
+    color_discrete_sequence=px.colors.diverging.RdYlGn[::-1] if n_clusters <= 4 else px.colors.qualitative.Set2,
 )
 fig_map.update_geos(fitbounds="locations", visible=False)
 fig_map.update_layout(margin=dict(l=0, r=0, t=0, b=0), height=550)
-st.plotly_chart(fig_map, use_container_width=True)
+st.plotly_chart(fig_map, width='stretch')
 
 st.divider()
 
@@ -166,7 +168,7 @@ with left:
         .rename(columns=FEATURE_LABELS)
         .round(2)
     )
-    st.dataframe(summary, use_container_width=True)
+    st.dataframe(summary, width='stretch')
 
     fig_bar = px.bar(
         df.groupby("cluster_label")["persen_miskin_sept"].mean().reindex(
@@ -176,10 +178,10 @@ with left:
         y="persen_miskin_sept",
         labels={"cluster_label": "Klaster", "persen_miskin_sept": "Rata-rata Kemiskinan (%)"},
         color="cluster_label",
-        color_discrete_sequence=px.colors.sequential.RdYlGn[::-1],
+        color_discrete_sequence=px.colors.diverging.RdYlGn[::-1],
     )
     fig_bar.update_layout(showlegend=False, height=350)
-    st.plotly_chart(fig_bar, use_container_width=True)
+    st.plotly_chart(fig_bar, width='stretch')
 
 with right:
     st.subheader("🔎 Provinsi Prioritas Tertinggi")
@@ -200,7 +202,7 @@ with right:
                 "skor_prioritas": "Skor Prioritas",
             }
         ).round(2),
-        use_container_width=True,
+        width='stretch',
         height=490,
     )
 
