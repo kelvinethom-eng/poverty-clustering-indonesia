@@ -61,7 +61,3 @@ streamlit run app.py
 ## Tech Stack
 Python · pandas · scikit-learn · GeoPandas · Streamlit · Plotly
 
-## Struktur Repo
-```
-[isi dengan tree folder di atas]
-```
